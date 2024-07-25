@@ -1,9 +1,7 @@
-<div id='select'></div>
+
 
 <h1>3C3U WORLD MAP</h1>
-<br>
-<br>
-<br>
+<ln>
 <h2>MINECRAFT:OVERWORLD↴</h2>
 <div id='pico'></div>
 <h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
@@ -13,60 +11,9 @@
 <h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
 
 <script>
-function loadHistoryOptions() {
-  console.log("loadHistoryOptions function called");
-  var selectContainer = document.getElementById("select");
-  if (!selectContainer) {
-    console.error("Select container not found");
-    return;
-  }
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "info.json", true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        console.log("JSON data received");
-        try {
-          var data = JSON.parse(xhr.responseText);
-          var history = data.history;
-          console.log("History data:", history);
-
-          var select = document.createElement("select");
-          select.id = "historySelect";
-          select.onchange = refreshContent;
-          selectContainer.appendChild(select);
-
-          // Add a default option
-          var defaultOption = document.createElement("option");
-          defaultOption.text = "选择日期";
-          defaultOption.value = "";
-          select.appendChild(defaultOption);
-
-          for (var i = 0; i < history.length; i++) {
-            var option = document.createElement("option");
-            option.value = history[i].date;
-            option.text = history[i].date;
-            select.appendChild(option);
-          }
-          console.log("Select element created with " + history.length + " options");
-        } catch (e) {
-          console.error("Error parsing JSON:", e);
-        }
-      } else {
-        console.error("Failed to load info.json. Status:", xhr.status);
-      }
-    }
-  };
-  xhr.send();
-}
-
-function refreshContent() {
-  console.log("refreshContent function called");
-  var select = document.getElementById("historySelect");
-  var selectedDate = select.value;
-
-  if (selectedDate) {
+  function get() {
+    // 发送异步请求以获取文件内容
+    var h = document.getElementById("his");
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "info.json", true);
     xhr.onreadystatechange = function() {
@@ -75,21 +22,37 @@ function refreshContent() {
         var history = data.history;
 
         for (var i = 0; i < history.length; i++) {
-          if (selectedDate === history[i].date) {
-            document.getElementById("pico").innerHTML = history[i].pico;
-            document.getElementById("picocave").innerHTML = history[i].picocave;
-            document.getElementById("nether").innerHTML = history[i].nether;
-            console.log("Content updated for date:", selectedDate);
-            break;
+          h.innerHTML = h.innerHTML + history[i].date;
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  function reflesh() {
+    var h = document.getElementById("hisa").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "info.json", true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        var history = data.history;
+
+        for (var i = 0; i < history.length; i++) {
+          if (h == history[i].date) {
+            var pico = document.getElementById("pico");
+            var picocave = document.getElementById("picocave");
+            var nether = document.getElementById("nether");
+            pico.innerHTML = history[i].pico;
+            picocave.innerHTML = history[i].picocave;
+            nether.innerHTML = history[i].nether;
           }
         }
       }
     };
     xhr.send();
   }
-}
 
-alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
-console.log("Script started");
-loadHistoryOptions();
+  alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
+  get();
 </script>
