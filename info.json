@@ -1,6 +1,6 @@
 {
-  'date': '2024-7-26',
-  'pico': "<object data='2024.7.25.pico.png'>",
-  'picocave': "<object data='2024.7.25.picocave.png'>",
-  'nether': "<object data='2024.7.25.nether.png'>"
+  "date": "2024-7-26",
+  "pico": "<object data='2024.7.25.pico.png'>",
+  "picocave": "<object data='2024.7.25.picocave.png'>",
+  "nethe": "<object data='2024.7.25.nether.png'>"
 }
