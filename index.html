@@ -1,7 +1,6 @@
-
-
 <h1>3C3U WORLD MAP</h1>
 <ln>
+<div id='lastchange'></div>
 <h2>MINECRAFT:OVERWORLD↴</h2>
 <div id='pico'></div>
 <h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
@@ -19,40 +18,22 @@
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var data = JSON.parse(xhr.responseText);
-        var history = data.history;
-
-        for (var i = 0; i < history.length; i++) {
-          h.innerHTML = h.innerHTML + history[i].date;
-        }
+        var date = document.getElementById("lastchange");
+        var pico = document.getElementById("pico");
+        var picocave = document.getElementById("picocave");
+        var nether = document.getElementById("nether");
+        var lastchange = document.createElement("input");
+        lastchange.type = "date";
+        lastchange.value = data.date;
+        lastchange.readonly = "true";
+        date.appendChild(lastchange);
+        pico.innerHTML = data.pico;
+        picocave.innerHTML = data.picocave;
+        nether.innerHTML = data.nether;
       }
     };
     xhr.send();
   }
-
-  function reflesh() {
-    var h = document.getElementById("hisa").value;
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "info.json", true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        var history = data.history;
-
-        for (var i = 0; i < history.length; i++) {
-          if (h == history[i].date) {
-            var pico = document.getElementById("pico");
-            var picocave = document.getElementById("picocave");
-            var nether = document.getElementById("nether");
-            pico.innerHTML = history[i].pico;
-            picocave.innerHTML = history[i].picocave;
-            nether.innerHTML = history[i].nether;
-          }
-        }
-      }
-    };
-    xhr.send();
-  }
-
   alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
   get();
 </script>
