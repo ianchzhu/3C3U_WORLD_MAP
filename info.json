@@ -1,6 +1,6 @@
 {
   "date": "2024-7-26",
-  "pico": "<object data='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.pico.png'>",
-  "picocave": "<object data='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.picocave.png'>",
-  "nether": "<object data='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.nether.png'>"
+  "pico": "<svg><image xlink:href='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.pico.png'></image></svg>",
+  "picocave": "<svg><image xlink:href='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.picocave.png'></image>",
+  "nether": "<svg><image xlink:href='https://github.moeyy.xyz/https://github.com/ianchzhu/3C3U_WORLD_MAP/releases/download/2024%2F7%2F25/2024.7.25.nether.png'></image></svg>"
 }
