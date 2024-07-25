@@ -20,14 +20,17 @@ function loadHistoryOptions() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var data = JSON.parse(xhr.responseText);
       var history = data.history;
-      select.innerHTML = <select id="historySelect" onchange="refreshContent()">
+      var option = document.createElement("select");
+      option.id = "historySelect";
+      option.onchange = "refreshContent()";
+      select.appendChild(option);
+      var select = document.getElementById("historySelect");
       for (var i = 0; i < history.length; i++) {
         var option = document.createElement("option");
         option.value = history[i].date;
         option.text = history[i].date;
         select.appendChild(option);
       }
-      select.innerHTML = select.innerHTML + </select>
     }
   };
   xhr.send();
