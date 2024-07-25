@@ -22,11 +22,7 @@
         var pico = document.getElementById("pico");
         var picocave = document.getElementById("picocave");
         var nether = document.getElementById("nether");
-        var lastchange = document.createElement("input");
-        lastchange.type = "date";
-        lastchange.value = data.date;
-        lastchange.readonly = true;
-        date.appendChild(lastchange);
+        date.innerHTML = data.date
         pico.innerHTML = data.pico;
         picocave.innerHTML = data.picocave;
         nether.innerHTML = data.nether;
