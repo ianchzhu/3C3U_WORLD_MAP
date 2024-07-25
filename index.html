@@ -1,0 +1,70 @@
+<script>
+  function get() {
+  // 发送异步请求以获取文件内容
+  var h = document.getElementById("his");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "info.json", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var history = data.history;
+
+     
+      for (var i = 0; i < history.length; i++) {
+          h.innerHTML = h.innerHTML + history[i].date
+          // 这里可以添加重定向到其他页面的代码
+          return;
+        }
+      }
+
+      alert("Invalid username or password!"); // 登录失败提示
+    }
+  };
+  xhr.send();
+}
+function reflesh() {
+  var h = document.getElementById("hisa").value;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "info.json", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var history = data.history;
+
+     
+      for (var i = 0; i < history.length; i++) {
+          if (h == history[i].history) {
+            var pico = document.getElementById("pico");
+            var picocave = document.getElementById("picocave");
+            var nether = document.getElementById("nether");
+            pico.innerHTML = history[i].pico;
+            picocave.innerHTML = history[i].picocave;
+            nether.innerHTML = history[i].nether;
+          }
+          // 这里可以添加重定向到其他页面的代码
+          return;
+        }
+      }
+
+      return;
+    }
+  };
+  xhr.send();
+}
+alert ('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
+get();
+</script>
+<input list="his">
+<datalist id="his"></datalist>
+<input type='submit' value='reflesh' onclick='reflesh()'>
+<h1>3C3U WORLD MAP</h1>
+<br>
+<br>
+<br>
+<h2>MINECRAFT:OVERWORLD↴</h2>
+<div id='pico'></div>
+<h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
+<div id='picocave'></div>
+<h2>MINECRAFT:NETHER↴</h2>
+<div id='nether'></div>
+<h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
