@@ -1,6 +1,5 @@
 <script>
   function get() {
-    // 发送异步请求以获取文件内容
     var h = document.getElementById("his");
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "info.json", true);
@@ -10,7 +9,10 @@
         var history = data.history;
 
         for (var i = 0; i < history.length; i++) {
-          h.innerHTML = h.innerHTML + history[i].date;
+          var option = document.createElement("option");
+          option.value = history[i].date;
+          option.text = history[i].date;
+          h.appendChild(option);
         }
       }
     };
@@ -28,12 +30,10 @@
 
         for (var i = 0; i < history.length; i++) {
           if (h == history[i].date) {
-            var pico = document.getElementById("pico");
-            var picocave = document.getElementById("picocave");
-            var nether = document.getElementById("nether");
-            pico.innerHTML = history[i].pico;
-            picocave.innerHTML = history[i].picocave;
-            nether.innerHTML = history[i].nether;
+            document.getElementById("pico").textContent = history[i].pico;
+            document.getElementById("picocave").textContent = history[i].picocave;
+            document.getElementById("nether").textContent = history[i].nether;
+            break;
           }
         }
       }
@@ -44,18 +44,17 @@
   alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
   get();
 </script>
-
-<input list="his">
+<input list="his" id="hisa">
 <datalist id="his"></datalist>
-<input type='submit' value='reflesh' onclick='reflesh()'>
+<input type='button' value='刷新' onclick='reflesh()'>
 <h1>3C3U WORLD MAP</h1>
 <br>
 <br>
 <br>
 <h2>MINECRAFT:OVERWORLD↴</h2>
-<svg id='pico'></svg>
+<div id='pico'></div>
 <h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
-<svg id='picocave'></svg>
+<div id='picocave'></div>
 <h2>MINECRAFT:NETHER↴</h2>
-<svg id='nether'></svg>
+<div id='nether'></div>
 <h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
