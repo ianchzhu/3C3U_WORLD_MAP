@@ -1,25 +1,44 @@
+<select id="historySelect" onchange="refreshContent()">
+  <option value="">选择日期</option>
+</select>
+
+<h1>3C3U WORLD MAP</h1>
+<br>
+<br>
+<br>
+<h2>MINECRAFT:OVERWORLD↴</h2>
+<div id='pico'></div>
+<h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
+<div id='picocave'></div>
+<h2>MINECRAFT:NETHER↴</h2>
+<div id='nether'></div>
+<h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
 <script>
-  function get() {
-    var datalist = document.getElementById("his");
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "info.json", true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        var history = data.history;
+function loadHistoryOptions() {
+  var select = document.getElementById("historySelect");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "info.json", true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var history = data.history;
 
-        for (var i = 0; i < history.length; i++) {
-          var option = document.createElement("option");
-          option.value = history[i].date;
-          datalist.appendChild(option);
-        }
+      for (var i = 0; i < history.length; i++) {
+        var option = document.createElement("option");
+        option.value = history[i].date;
+        option.text = history[i].date;
+        select.appendChild(option);
       }
-    };
-    xhr.send();
-  }
+    }
+  };
+  xhr.send();
+}
 
-  function reflesh() {
-    var selectedDate = document.getElementById("hisa").value;
+function refreshContent() {
+  var select = document.getElementById("historySelect");
+  var selectedDate = select.value;
+
+  if (selectedDate) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "info.json", true);
     xhr.onreadystatechange = function() {
@@ -39,21 +58,8 @@
     };
     xhr.send();
   }
+}
 
-  alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
-  get();
+alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
+loadHistoryOptions();
 </script>
-<input list="his" id="hisa">
-<datalist id="his"></datalist>
-<input type='button' value='刷新' onclick='reflesh()'>
-<h1>3C3U WORLD MAP</h1>
-<br>
-<br>
-<br>
-<h2>MINECRAFT:OVERWORLD↴</h2>
-<div id='pico'></div>
-<h2>MINECRAFT:OVERWORLD - CAVES↴</h2>
-<div id='picocave'></div>
-<h2>MINECRAFT:NETHER↴</h2>
-<div id='nether'></div>
-<h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
