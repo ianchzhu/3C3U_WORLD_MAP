@@ -1,38 +1,32 @@
 <script>
   function get() {
-  // 发送异步请求以获取文件内容
-  var h = document.getElementById("his");
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "info.json", true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-      var history = data.history;
+    // 发送异步请求以获取文件内容
+    var h = document.getElementById("his");
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "info.json", true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        var history = data.history;
 
-     
-      for (var i = 0; i < history.length; i++) {
-          h.innerHTML = h.innerHTML + history[i].date
-          // 这里可以添加重定向到其他页面的代码
-          return;
+        for (var i = 0; i < history.length; i++) {
+          h.innerHTML = h.innerHTML + history[i].date;
         }
       }
+    };
+    xhr.send();
+  }
 
-      alert("Invalid username or password!"); // 登录失败提示
-    }
-  };
-  xhr.send();
-};
-function reflesh() {
-  var h = document.getElementById("hisa").value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "info.json", true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var data = JSON.parse(xhr.responseText);
-      var history = data.history;
+  function reflesh() {
+    var h = document.getElementById("hisa").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "info.json", true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        var history = data.history;
 
-     
-      for (var i = 0; i < history.length; i++) {
+        for (var i = 0; i < history.length; i++) {
           if (h == history[i].date) {
             var pico = document.getElementById("pico");
             var picocave = document.getElementById("picocave");
@@ -41,19 +35,16 @@ function reflesh() {
             picocave.innerHTML = history[i].picocave;
             nether.innerHTML = history[i].nether;
           }
-          // 这里可以添加重定向到其他页面的代码
-          return;
         }
       }
+    };
+    xhr.send();
+  }
 
-      return;
-    }
-  };
-  xhr.send();
-}
-alert ('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
-get();
+  alert('COPYRIGHT©JINDATUWEN,AURORIUM \n 版权©金达图文，AURORIUM \n 使用前请事先声明！！！');
+  get();
 </script>
+
 <input list="his">
 <datalist id="his"></datalist>
 <input type='submit' value='reflesh' onclick='reflesh()'>
