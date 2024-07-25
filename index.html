@@ -1,6 +1,4 @@
-<select id="historySelect" onchange="refreshContent()">
-  <option value="">选择日期</option>
-</select>
+<div id='select'></div>
 
 <h1>3C3U WORLD MAP</h1>
 <br>
@@ -15,20 +13,21 @@
 <h4>COPYRIGHT©JINDATUWEN,AURORIUM</h4>
 <script>
 function loadHistoryOptions() {
-  var select = document.getElementById("historySelect");
+  var select = document.getElementById("select");
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "info.json", true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var data = JSON.parse(xhr.responseText);
       var history = data.history;
-
+      select.innerHTML = <select id="historySelect" onchange="refreshContent()">
       for (var i = 0; i < history.length; i++) {
         var option = document.createElement("option");
         option.value = history[i].date;
         option.text = history[i].date;
         select.appendChild(option);
       }
+      select.innerHTML = select.innerHTML + </select>
     }
   };
   xhr.send();
@@ -48,9 +47,9 @@ function refreshContent() {
 
         for (var i = 0; i < history.length; i++) {
           if (selectedDate === history[i].date) {
-            document.getElementById("pico").textContent = history[i].pico;
-            document.getElementById("picocave").textContent = history[i].picocave;
-            document.getElementById("nether").textContent = history[i].nether;
+            document.getElementById("pico").innerHTML = history[i].pico;
+            document.getElementById("picocave").innerHTML = history[i].picocave;
+            document.getElementById("nether").innerHTML = history[i].nether;
             break;
           }
         }
